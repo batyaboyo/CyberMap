@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     progressTargets.forEach(li => {
         const text = li.innerText.trim();
         const id = generateId(text);
-        
+
         // Ensure LI has some text to generate ID
         if (!id) return;
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const phases = document.querySelectorAll('.phase-card');
 
             phases.forEach(phase => {
-                const items = phase.querySelectorAll('.content-block li, .tools-grid span');
+                const items = phase.querySelectorAll('.content-block li, .tools-grid span, .uganda-card li');
                 let foundMatch = false;
 
                 items.forEach(item => {
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const content = header.nextElementSibling;
                 const icon = header.querySelector('.expand-icon i') || header.querySelector('i');
                 const isActive = content.classList.toggle('active');
-                
+
                 if (icon) {
                     if (icon.classList.contains('fa-plus') || icon.classList.contains('fa-minus')) {
                         icon.classList.toggle('fa-plus', !isActive);
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) {
         const body = document.body;
         const icon = themeToggle.querySelector('i');
-        
+
         const setTheme = (isLight) => {
             body.classList.toggle('light-mode', isLight);
             icon.classList.toggle('fa-sun', !isLight);
