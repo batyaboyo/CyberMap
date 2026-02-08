@@ -540,8 +540,8 @@ h1 {
 }
 
 .phase-content.active {
-    max-height: 1000px;
-    /* Arbitrary large height for animation */
+    max-height: 2500px;
+    /* Increased for detailed skill lists */
     padding-bottom: 2rem;
 }
 
