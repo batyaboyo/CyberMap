@@ -12,9 +12,11 @@
     --font-main: 'Inter', sans-serif;
     --font-heading: 'Orbitron', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-    --neon-glow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
-    --cyan-glow: 0 0 10px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.3);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(20, 20, 20, 0.4);
+    --neon-glow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.2);
+    --cyan-glow: 0 0 10px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.2);
+    --selection-bg: var(--primary-color);
 }
 
 body.light-mode {
@@ -230,6 +232,11 @@ html {
     scroll-behavior: smooth;
 }
 
+::selection {
+    background: var(--selection-bg);
+    color: #000;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -404,7 +411,32 @@ h1 {
     font-size: 1rem;
     margin-bottom: 1rem;
     letter-spacing: 3px;
-    animation: blink 2s infinite;
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--secondary-color);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
 }
 
 .subtitle {
@@ -484,11 +516,12 @@ h1 {
 }
 
 .phase-card {
-    background: var(--card-bg);
+    background: var(--glass-bg);
     border: var(--glass-border);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     transition: all 0.3s ease;
     position: relative;
     border-left: 3px solid var(--text-muted);
@@ -573,11 +606,39 @@ h1 {
 }
 
 .content-block ul li::before {
-    content: '>';
+    content: '>>';
     position: absolute;
     left: 0;
     color: var(--primary-color);
     font-family: var(--font-mono);
+    font-size: 0.8rem;
+    top: 2px;
+}
+
+/* Staggered Entrance Utility */
+.phase-content.active .content-block ul li {
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+}
+
+.phase-content.active .content-block ul li:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.phase-content.active .content-block ul li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.phase-content.active .content-block ul li:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.phase-content.active .content-block ul li:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.phase-content.active .content-block ul li:nth-child(5) {
+    animation-delay: 0.25s;
 }
 
 .resource-list li {
@@ -791,6 +852,308 @@ footer {
 
 /* DFIR Section Refactored to Standard Format */
 
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(69px, 9999px, 96px, 0);
+    }
+
+    5% {
+        clip: rect(21px, 9999px, 92px, 0);
+    }
+
+    10% {
+        clip: rect(32px, 9999px, 44px, 0);
+    }
+
+    15% {
+        clip: rect(4px, 9999px, 86px, 0);
+    }
+
+    20% {
+        clip: rect(74px, 9999px, 83px, 0);
+    }
+
+    25% {
+        clip: rect(58px, 9999px, 94px, 0);
+    }
+
+    30% {
+        clip: rect(28px, 9999px, 57px, 0);
+    }
+
+    35% {
+        clip: rect(8px, 9999px, 60px, 0);
+    }
+
+    40% {
+        clip: rect(45px, 9999px, 91px, 0);
+    }
+
+    45% {
+        clip: rect(10px, 9999px, 3px, 0);
+    }
+
+    50% {
+        clip: rect(23px, 9999px, 87px, 0);
+    }
+
+    55% {
+        clip: rect(89px, 9999px, 67px, 0);
+    }
+
+    60% {
+        clip: rect(26px, 9999px, 55px, 0);
+    }
+
+    65% {
+        clip: rect(71px, 9999px, 98px, 0);
+    }
+
+    70% {
+        clip: rect(84px, 9999px, 4px, 0);
+    }
+
+    75% {
+        clip: rect(13px, 9999px, 50px, 0);
+    }
+
+    80% {
+        clip: rect(51px, 9999px, 78px, 0);
+    }
+
+    85% {
+        clip: rect(44px, 9999px, 17px, 0);
+    }
+
+    90% {
+        clip: rect(35px, 9999px, 2px, 0);
+    }
+
+    95% {
+        clip: rect(7px, 9999px, 70px, 0);
+    }
+
+    100% {
+        clip: rect(93px, 9999px, 39px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(61px, 9999px, 42px, 0);
+    }
+
+    5% {
+        clip: rect(14px, 9999px, 9px, 0);
+    }
+
+    10% {
+        clip: rect(88px, 9999px, 11px, 0);
+    }
+
+    15% {
+        clip: rect(47px, 9999px, 80px, 0);
+    }
+
+    20% {
+        clip: rect(96px, 9999px, 5px, 0);
+    }
+
+    25% {
+        clip: rect(31px, 9999px, 68px, 0);
+    }
+
+    30% {
+        clip: rect(55px, 9999px, 27px, 0);
+    }
+
+    35% {
+        clip: rect(9px, 9999px, 56px, 0);
+    }
+
+    40% {
+        clip: rect(22px, 9999px, 1px, 0);
+    }
+
+    45% {
+        clip: rect(73px, 9999px, 33px, 0);
+    }
+
+    50% {
+        clip: rect(4px, 9999px, 94px, 0);
+    }
+
+    55% {
+        clip: rect(82px, 9999px, 15px, 0);
+    }
+
+    60% {
+        clip: rect(5px, 9999px, 63px, 0);
+    }
+
+    65% {
+        clip: rect(49px, 9999px, 90px, 0);
+    }
+
+    70% {
+        clip: rect(17px, 9999px, 12px, 0);
+    }
+
+    75% {
+        clip: rect(53px, 9999px, 41px, 0);
+    }
+
+    80% {
+        clip: rect(98px, 9999px, 78px, 0);
+    }
+
+    85% {
+        clip: rect(24px, 9999px, 67px, 0);
+    }
+
+    90% {
+        clip: rect(71px, 9999px, 60px, 0);
+    }
+
+    95% {
+        clip: rect(43px, 9999px, 85px, 0);
+    }
+
+    100% {
+        clip: rect(12px, 9999px, 32px, 0);
+    }
+}
+
+/* New Elements Styles */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: 50%;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: var(--neon-glow);
+    transform: translateY(-5px);
+}
+
+.search-container {
+    margin-bottom: 2rem;
+    position: relative;
+    max-width: 600px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 1.5rem 1rem 3rem;
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: 8px;
+    color: #fff;
+    font-family: var(--font-mono);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-glow);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.progress-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-small {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.btn-reset:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Progress Bar Shine Effect */
+.progress-bar-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    to {
+        left: 100%;
+    }
+}
+
 @keyframes blink {
 
     0%,
@@ -799,9 +1162,10 @@ footer {
     }
 
     50% {
-        opacity: 0;
+        opacity: 0.5;
     }
 }
+
 
 @keyframes bounce {
 
