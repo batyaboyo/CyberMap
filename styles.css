@@ -789,42 +789,7 @@ footer {
 }
 
 
-/* DFIR Section Styles */
-.dfir-step-wrapper {
-    margin-bottom: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dfir-step-wrapper:first-child {
-    border-top: none;
-    padding-top: 0;
-}
-
-.dfir-step-header {
-    padding: 0 2rem;
-    margin-bottom: 1rem;
-}
-
-.dfir-step-header h4 {
-    font-family: var(--font-heading);
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    display: inline-block;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 5px;
-}
-
-/* Light Mode Adjustments for DFIR */
-body.light-mode .dfir-step-wrapper {
-    border-top-color: rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .dfir-step-header h4 {
-    color: #008f51;
-    /* Darker green */
-}
+/* DFIR Section Refactored to Standard Format */
 
 @keyframes blink {
 
