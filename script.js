@@ -1,380 +1,374 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. THEME MANAGER ---
+    // --- 1. DASHBOARD INITIALIZATION ---
+    const body = document.body;
+    const cpuVal = document.getElementById('cpu-load');
+    const mainProgressText = document.getElementById('progress-text');
+    const mainProgressPercent = document.getElementById('progress-percent');
+    const mainProgressBar = document.getElementById('main-progress-bar');
+
+    // Sidebar & menu toggle (declared early to avoid reference errors)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    const closeSidebar = () => {
+        if (sidebar) sidebar.classList.remove('active');
+        if (menuToggle) menuToggle.classList.remove('active');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+    };
+    
+    // --- 2. TERMINAL TYPEWRITER EFFECT ---
+    const typeSubtitle = () => {
+        const sub = document.getElementById('typing-sub');
+        if (!sub) return;
+        
+        const lines = [
+            "> INITIALIZING CYBER OPERATIONS...",
+            "> LOADING PENETRATION TESTING MODULES...",
+            "> SYSTEM READY. STAND BY FOR MISSION START."
+        ];
+        
+        let lineIdx = 0;
+        let charIdx = 0;
+        let currentLine = "";
+        
+        const typeChar = () => {
+            if (lineIdx < lines.length) {
+                if (charIdx < lines[lineIdx].length) {
+                    currentLine += lines[lineIdx][charIdx];
+                    sub.innerHTML = currentLine + '<span class="cursor">_</span>';
+                    charIdx++;
+                    setTimeout(typeChar, 50);
+                } else {
+                    currentLine += "<br>";
+                    lineIdx++;
+                    charIdx = 0;
+                    setTimeout(typeChar, 500);
+                }
+            }
+        };
+        typeChar();
+    };
+    typeSubtitle();
+
+    // --- 3. LIVE SYSTEM STATS ---
+    const updateStats = () => {
+        if(cpuVal) {
+            const load = Math.floor(Math.random() * 8) + 1;
+            cpuVal.innerText = `${load.toString().padStart(2, '0')}%`;
+        }
+    };
+    setInterval(updateStats, 3000);
+
+    // --- 4. THEME & PERSISTENCE ---
     const themeBtn = document.getElementById('theme-btn');
     const savedTheme = localStorage.getItem('hackerCmdTheme');
     
-    // Apply saved theme on load
     if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
+        body.classList.add('light-theme');
         if (themeBtn) themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
 
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            const isLight = document.body.classList.contains('light-theme');
-            
-            // Toggle Icon
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
             themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-            
-            // Save Preference
             localStorage.setItem('hackerCmdTheme', isLight ? 'light' : 'dark');
         });
     }
 
-    // --- 1. LOCAL STORAGE & PROGRESS TRACKER ---
-
-    // Generate valid IDs for list items to track them consistently
-    const generateId = (text) => {
-        return text.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
+    // --- 5. PROGRESS & SKILL TRACKER ---
+    // Generate a stable unique ID from text + index to avoid collisions
+    const generateId = (text, index) => {
+        const base = text.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
+        return base ? `${base}_${index}` : '';
     };
-
-    // Target specific list items for tracking
     const progressTargets = document.querySelectorAll('.content-block ul li, .resource-list li');
-    let totalItems = progressTargets.length;
-    let completedItems = 0;
-
-    // Create Progress Dashboard
-    const createProgressDashboard = () => {
-        const dashboard = document.createElement('div');
-        dashboard.className = 'container progress-header';
-        dashboard.style.cssText = 'background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0,255,136,0.2); padding: 15px 20px; border-radius: 4px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.9rem;';
-        
-        dashboard.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
-                <span style="color: var(--primary-color); font-weight: bold;"><i class="fa-solid fa-terminal"></i> OP STATUS</span>
-                <div style="flex: 1; height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
-                    <div id="main-progress-bar" style="height: 100%; width: 0%; background: var(--primary-color); transition: width 0.3s ease; box-shadow: var(--neon-glow);"></div>
-                </div>
-                <span id="progress-text" style="color: var(--primary-color); min-width: 45px; text-align: right;">0%</span>
-            </div>
-        `;
-
-        const roadmapSection = document.getElementById('roadmap');
-        const container = roadmapSection.querySelector('.container');
-        container.insertBefore(dashboard, container.querySelector('.search-container'));
-
-        return {
-            bar: document.getElementById('main-progress-bar'),
-            text: document.getElementById('progress-text')
-        };
-    };
-
-    const dashboardUI = createProgressDashboard();
-
-    // Load saved state
+    const skillCheckboxes = document.querySelectorAll('.skill-item input');
+    
     let savedProgress = JSON.parse(localStorage.getItem('hackerCommandCenterProgress')) || {};
+    let savedSkills = JSON.parse(localStorage.getItem('hackerSidebarSkills')) || {};
 
-    const updateProgressUI = () => {
-        const percentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-        if(dashboardUI.bar) dashboardUI.bar.style.width = `${percentage}%`;
-        if(dashboardUI.text) dashboardUI.text.innerText = `${completedItems}/${totalItems} Ops (${percentage}%)`;
+    const updateAllProgress = () => {
+        const totalOps = progressTargets.length;
+        const completedOps = Object.values(savedProgress).filter(Boolean).length;
+        const percentage = totalOps > 0 ? Math.round((completedOps / totalOps) * 100) : 0;
+        
+        if(mainProgressBar) mainProgressBar.style.width = `${percentage}%`;
+        if(mainProgressPercent) mainProgressPercent.innerText = `${percentage}%`;
+        if(mainProgressText) mainProgressText.innerText = `${completedOps}/${totalOps} Operations Secure`;
 
-        if (percentage === 100 && dashboardUI.text) {
-            dashboardUI.text.innerText = "100% - MASTER OPERATOR";
-            dashboardUI.text.style.color = "var(--secondary-color)";
-            if(dashboardUI.bar) dashboardUI.bar.style.background = "var(--secondary-color)";
-        }
+        // Update per-phase progress in sidebar
+        updatePhaseProgress();
     };
 
-    // Initialize Checkboxes
-    progressTargets.forEach(li => {
-        const text = li.innerText.trim();
-        const id = generateId(text);
-
-        if (!id) return;
-
-        // Create custom checkbox UI
-        const checkboxWrapper = document.createElement('span');
-        checkboxWrapper.style.cssText = 'display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--primary-color); margin-right: 10px; cursor: pointer; border-radius: 3px; background: rgba(0,0,0,0.5); vertical-align: middle; transition: all 0.2s;';
-        
-        const checkIcon = document.createElement('i');
-        checkIcon.className = 'fa-solid fa-check';
-        checkIcon.style.cssText = 'color: #000; font-size: 12px; opacity: 0; transition: opacity 0.2s;';
-        checkboxWrapper.appendChild(checkIcon);
-
-        // State function
-        const setCompleted = (isComplete, save = true) => {
-            if (isComplete) {
-                checkIcon.style.opacity = '1';
-                checkboxWrapper.style.background = 'var(--primary-color)';
-                li.style.opacity = '0.5';
-                li.style.textDecoration = 'line-through';
-                if(save && !savedProgress[id]) {
-                    savedProgress[id] = true;
-                    completedItems++;
+    // Per-phase progress badges
+    const updatePhaseProgress = () => {
+        document.querySelectorAll('.phase-card').forEach(card => {
+            const phaseId = card.getAttribute('id');
+            const items = card.querySelectorAll('.content-block ul li');
+            if (!items.length) return;
+            let done = 0;
+            items.forEach(li => { if (li.classList.contains('strikethrough')) done++; });
+            const pct = Math.round((done / items.length) * 100);
+            const link = document.querySelector(`.sidebar a[href="#${phaseId}"]`);
+            if (link) {
+                let badge = link.querySelector('.phase-badge');
+                if (!badge) {
+                    badge = document.createElement('span');
+                    badge.className = 'phase-badge';
+                    link.appendChild(badge);
                 }
-            } else {
-                checkIcon.style.opacity = '0';
-                checkboxWrapper.style.background = 'rgba(0,0,0,0.5)';
-                li.style.opacity = '1';
-                li.style.textDecoration = 'none';
-                if(save && savedProgress[id]) {
-                    delete savedProgress[id];
-                    completedItems--;
-                }
+                badge.textContent = `${pct}%`;
+                badge.classList.toggle('complete', pct === 100);
             }
-            if(save) {
-                localStorage.setItem('hackerCommandCenterProgress', JSON.stringify(savedProgress));
-                updateProgressUI();
-            }
-        };
-
-        // Initial Load
-        if (savedProgress[id]) {
-            completedItems++;
-            setCompleted(true, false);
-        }
-
-        // Click Event
-        checkboxWrapper.addEventListener('click', () => {
-            const isCurrentlyChecked = !!savedProgress[id];
-            setCompleted(!isCurrentlyChecked);
         });
+    };
 
-        li.prepend(checkboxWrapper);
-        // Remove the existing `>` pseudo element text equivalent by styling
-        li.style.paddingLeft = '0';
+    // Initialize Skill Tracker
+    skillCheckboxes.forEach(cb => {
+        const id = cb.dataset.skill;
+        cb.checked = !!savedSkills[id];
+        cb.addEventListener('change', () => {
+            savedSkills[id] = cb.checked;
+            localStorage.setItem('hackerSidebarSkills', JSON.stringify(savedSkills));
+        });
     });
 
-    updateProgressUI();
+    // Initialize Operational Checklist
+    progressTargets.forEach((li, index) => {
+        const text = li.innerText.trim();
+        const id = generateId(text, index);
+        if (!id) return;
 
-    // --- 2. NEW PROGRESS CONTROLS (Header Buttons) ---
+        const checkbox = document.createElement('span');
+        checkbox.className = 'custom-cb';
+        checkbox.setAttribute('tabindex', '0');
+        checkbox.setAttribute('role', 'checkbox');
+        checkbox.setAttribute('aria-checked', !!savedProgress[id]);
+        checkbox.innerHTML = '<i class="fa-solid fa-check"></i>';
+        
+        const setComplete = (isDone, save = true) => {
+            checkbox.classList.toggle('checked', isDone);
+            checkbox.setAttribute('aria-checked', isDone);
+            li.classList.toggle('strikethrough', isDone);
+            if(save) {
+                if(isDone) savedProgress[id] = true;
+                else delete savedProgress[id];
+                localStorage.setItem('hackerCommandCenterProgress', JSON.stringify(savedProgress));
+                updateAllProgress();
+            }
+        };
 
-    const resetBtn = document.getElementById('reset-btn');
-    if(resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            if (confirm('WARNING: Initialize full data wipe? This will permanently delete your operational progress.')) {
-                localStorage.removeItem('hackerCommandCenterProgress');
-                location.reload();
+        if(savedProgress[id]) setComplete(true, false);
+
+        checkbox.addEventListener('click', () => setComplete(!checkbox.classList.contains('checked')));
+        checkbox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setComplete(!checkbox.classList.contains('checked'));
             }
         });
-    }
+        li.prepend(checkbox);
+    });
 
-    const exportBtn = document.getElementById('export-btn');
-    if(exportBtn) {
-        exportBtn.addEventListener('click', () => {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedProgress));
-            const downloadAnchorNode = document.createElement('a');
-            downloadAnchorNode.setAttribute("href", dataStr);
-            downloadAnchorNode.setAttribute("download", "operator_progress.json");
-            document.body.appendChild(downloadAnchorNode);
-            downloadAnchorNode.click();
-            downloadAnchorNode.remove();
-        });
-    }
+    updateAllProgress();
 
-    const importBtn = document.getElementById('import-btn');
-    if(importBtn) {
-        importBtn.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = e => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.readAsText(file, 'UTF-8');
-                reader.onload = readerEvent => {
-                    try {
-                        const content = JSON.parse(readerEvent.target.result);
-                        localStorage.setItem('hackerCommandCenterProgress', JSON.stringify(content));
-                        location.reload();
-                    } catch (err) {
-                        alert('ERROR: Invalid data format detected.');
-                    }
-                }
-            }
-            input.click();
-        });
-    }
+    // --- 6. SIDEBAR NAVIGATION & SCROLL ENGINE ---
+    const sidebarLinks = document.querySelectorAll('.sidebar li a');
+    const sections = document.querySelectorAll('.phase-card');
 
-    // --- 3. SEARCH & FILTER ---
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            const cockpit = document.querySelector('.main-cockpit');
+            
+            if(targetElement && cockpit) {
+                const targetPos = targetElement.getBoundingClientRect().top;
+                const cockpitPos = cockpit.getBoundingClientRect().top;
+                const offset = targetPos - cockpitPos + cockpit.scrollTop - 20;
 
-    // Directive Search
-    const resourceSearch = document.getElementById('resource-search');
-    if (resourceSearch) {
-        resourceSearch.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const phases = document.querySelectorAll('.phase-card');
-
-            phases.forEach(phase => {
-                const items = phase.querySelectorAll('.content-block li');
-                let foundMatch = false;
-
-                items.forEach(item => {
-                    const text = item.innerText.toLowerCase();
-                    if (text.includes(term)) {
-                        item.style.display = '';
-                        item.style.color = term ? 'var(--primary-color)' : '';
-                        foundMatch = true;
-                    } else {
-                        item.style.display = term ? 'none' : '';
-                    }
+                cockpit.scrollTo({
+                    top: offset,
+                    behavior: 'smooth'
                 });
-
-                if (term) {
-                    phase.style.display = foundMatch ? 'block' : 'none';
-                    if (foundMatch) {
-                        const content = phase.querySelector('.phase-content');
-                        if(content) content.classList.add('active');
-                    }
-                } else {
-                    phase.style.display = 'block';
-                    // Reset text color
-                    items.forEach(item => item.style.color = '');
-                }
-            });
+            }
+            // Auto-close sidebar on mobile
+            if (window.innerWidth <= 1024) {
+                closeSidebar();
+            }
         });
-    }
+    });
 
-    // Tools Arsenal Search
+    // Intersection Observer for Sidebar
+    const obsOptions = { root: document.querySelector('.main-cockpit'), threshold: 0.3 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                sidebarLinks.forEach(link => {
+                    const parent = link.parentElement;
+                    const isActive = link.getAttribute('href') === `#${id}`;
+                    parent.classList.toggle('active', isActive);
+                });
+            }
+        });
+    }, obsOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // --- 7. SEARCH ---
+    // Toolkit search
     const toolSearch = document.getElementById('tool-search');
     if (toolSearch) {
         toolSearch.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
-            const tools = document.querySelectorAll('.tool-item');
-            
-            tools.forEach(tool => {
+            document.querySelectorAll('.tool-item').forEach(tool => {
                 const text = tool.innerText.toLowerCase();
-                if(text.includes(term)) {
-                    tool.style.display = 'block';
-                } else {
-                    tool.style.display = 'none';
+                tool.style.display = text.includes(term) ? 'flex' : 'none';
+            });
+        });
+    }
+
+    // Roadmap resource search
+    const resourceSearch = document.getElementById('resource-search');
+    if (resourceSearch) {
+        resourceSearch.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            document.querySelectorAll('.phase-card').forEach(card => {
+                if (!term) {
+                    card.style.display = '';
+                    card.querySelectorAll('.content-block ul li').forEach(li => li.style.display = '');
+                    return;
                 }
-            });
-        });
-    }
-
-
-    // --- 4. NAVIGATION & BACK-TO-TOP ---
-
-    const backToTop = document.getElementById('back-to-top');
-    if(backToTop) {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 500) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    const phaseLinks = document.querySelectorAll('.phase-link');
-    const phaseCards = document.querySelectorAll('.phase-card');
-
-    // Smooth scroll for nav
-    const handleNavClick = (e, link) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('data-target');
-        const targetCard = document.getElementById(targetId);
-        
-        if(!targetCard) return;
-
-        const headerOffset = 140;
-        const elementPosition = targetCard.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-
-        // Auto-expand
-        const content = targetCard.querySelector('.phase-content');
-        const icon = targetCard.querySelector('.expand-icon i');
-        if (content && !content.classList.contains('active')) {
-            content.classList.add('active');
-            if(icon) icon.classList.replace('fa-plus', 'fa-minus');
-        }
-    };
-
-    phaseLinks.forEach(link => {
-        link.addEventListener('click', (e) => handleNavClick(e, link));
-    });
-
-    // Intersection Observer for ScrollSpy
-    if('IntersectionObserver' in window && phaseCards.length > 0) {
-        const spyOptions = { threshold: 0.2, rootMargin: "-20% 0px -60% 0px" };
-        const spyObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    phaseLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('data-target') === id);
-                    });
-                }
-            });
-        }, spyOptions);
-
-        phaseCards.forEach(card => spyObserver.observe(card));
-    }
-
-
-    // --- 5. CORE UI LOGIC ---
-
-    // Mobile Menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav');
-    const body = document.body;
-
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isActive = navMenu.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            
-            if(icon) {
-                icon.classList.toggle('fa-bars', !isActive);
-                icon.classList.toggle('fa-xmark', isActive);
-            }
-            menuToggle.setAttribute('aria-expanded', isActive);
-            body.style.overflow = isActive ? 'hidden' : '';
-        });
-
-        // Close menu when clicking a link
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if(icon) icon.classList.replace('fa-xmark', 'fa-bars');
-                body.style.overflow = '';
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if(icon) icon.classList.replace('fa-xmark', 'fa-bars');
-                body.style.overflow = '';
-            }
-        });
-    }
-
-    // Accordion Logic
-    const initAccordion = (selectors) => {
-        document.querySelectorAll(selectors).forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                if(!content) return;
-
-                const icon = header.querySelector('.expand-icon i') || header.querySelector('i');
-                const isActive = content.classList.toggle('active');
-
-                if (icon) {
-                    if (icon.classList.contains('fa-plus') || icon.classList.contains('fa-minus')) {
-                        icon.classList.toggle('fa-plus', !isActive);
-                        icon.classList.toggle('fa-minus', isActive);
-                    } else {
-                        header.classList.toggle('active', isActive);
+                const items = card.querySelectorAll('.content-block ul li');
+                let hasMatch = false;
+                items.forEach(li => {
+                    const match = li.textContent.toLowerCase().includes(term);
+                    li.style.display = match ? '' : 'none';
+                    if (match) hasMatch = true;
+                });
+                // Also match phase title
+                const title = card.querySelector('.phase-title');
+                if (title && title.textContent.toLowerCase().includes(term)) hasMatch = true;
+                card.style.display = hasMatch ? '' : 'none';
+                // Auto-expand matching cards
+                if (hasMatch && term.length > 1) {
+                    const content = card.querySelector('.phase-content');
+                    const icon = card.querySelector('.expand-icon i');
+                    if (content && !content.classList.contains('active')) {
+                        content.classList.add('active');
+                        if (icon) { icon.classList.remove('fa-plus'); icon.classList.add('fa-minus'); }
                     }
                 }
             });
         });
-    };
+    }
 
-    initAccordion('.phase-header');
+    // --- 8. MOBILE SIDEBAR TOGGLE ---
+    if(menuToggle && sidebar) {
+        menuToggle.addEventListener('click', () => {
+            const isOpening = !sidebar.classList.contains('active');
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            if (sidebarOverlay) sidebarOverlay.classList.toggle('active', isOpening);
+        });
+    }
+
+    // Close sidebar when clicking overlay
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
+
+    // --- 9. ACCORDION ---
+    document.querySelectorAll('.phase-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon i');
+            const isActive = content.classList.toggle('active');
+            if(icon) { icon.classList.toggle('fa-plus', !isActive); icon.classList.toggle('fa-minus', isActive); }
+        });
+    });
+
+    // --- 10. BACK TO TOP ---
+    const backToTop = document.getElementById('back-to-top');
+    const cockpit = document.querySelector('.main-cockpit');
+    if (backToTop && cockpit) {
+        cockpit.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', cockpit.scrollTop > 400);
+        });
+        backToTop.addEventListener('click', () => {
+            cockpit.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- 11. IMPORT / EXPORT PROGRESS ---
+    const exportBtn = document.getElementById('export-btn');
+    const importBtn = document.getElementById('import-btn');
+
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            const data = {
+                progress: savedProgress,
+                skills: savedSkills,
+                exportedAt: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cybermap-progress.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    }
+
+    if (importBtn) {
+        importBtn.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        if (data.progress && typeof data.progress === 'object') {
+                            savedProgress = data.progress;
+                            localStorage.setItem('hackerCommandCenterProgress', JSON.stringify(savedProgress));
+                        }
+                        if (data.skills && typeof data.skills === 'object') {
+                            savedSkills = data.skills;
+                            localStorage.setItem('hackerSidebarSkills', JSON.stringify(savedSkills));
+                            skillCheckboxes.forEach(cb => { cb.checked = !!savedSkills[cb.dataset.skill]; });
+                        }
+                        // Re-sync checkbox UI
+                        progressTargets.forEach((li, index) => {
+                            const text = li.innerText.replace(/^\s*✓?\s*/, '').trim();
+                            const id = generateId(text, index);
+                            if (!id) return;
+                            const cb = li.querySelector('.custom-cb');
+                            if (cb) {
+                                const isDone = !!savedProgress[id];
+                                cb.classList.toggle('checked', isDone);
+                                cb.setAttribute('aria-checked', isDone);
+                                li.classList.toggle('strikethrough', isDone);
+                            }
+                        });
+                        updateAllProgress();
+                    } catch {
+                        // Invalid file — ignore silently
+                    }
+                };
+                reader.readAsText(file);
+            });
+            input.click();
+        });
+    }
 });

@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,72 +19,138 @@
 
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
+    <div class="cyber-grid"></div>
 
-    <!-- Sticky Header -->
-    <header id="main-header" role="banner">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="#hero" aria-label="Go to start">
-                    <i class="fa-solid fa-terminal"></i> <span>CYBER<span class="highlight">MAP</span></span>
-                </a>
+    <div class="dashboard-container">
+        <!-- TOP NAVIGATION BAR -->
+        <header id="main-header" class="top-bar">
+            <div class="top-bar-content">
+                <div class="logo">
+                    <a href="#hero">
+                        <i class="fa-solid fa-terminal"></i> <span>HACKER<span class="highlight">OS</span> v2.0</span>
+                    </a>
+                </div>
+                <div class="system-stats-bar">
+                    <span class="stat-item"><i class="fa-solid fa-microchip"></i> CPU: <span id="cpu-load">02%</span></span>
+                    <span class="stat-item"><i class="fa-solid fa-wifi"></i> NET: <span class="highlight">SECURE</span></span>
+                    <span class="stat-item"><i class="fa-solid fa-shield-halved"></i> FIREWALL: <span class="highlight">ACTIVE</span></span>
+                </div>
+                <div class="header-actions">
+                    <div class="progress-controls">
+                        <button id="import-btn" title="Import Progress"><i class="fa-solid fa-upload"></i></button>
+                        <button id="export-btn" title="Export Progress"><i class="fa-solid fa-download"></i></button>
+                        <button id="theme-btn" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
+                    </div>
+                    <div class="menu-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
             </div>
-            <nav id="navbar" role="navigation" aria-label="Main Navigation">
+        </header>
+
+        <!-- LEFT SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <nav id="navbar">
+                <div class="sidebar-header">ROADMAP OPERATIONS</div>
                 <ul>
-                    <li><a href="#hero">Terminal</a></li>
-                    <li><a href="#roadmap">Directives</a></li>
-                    <li><a href="#tools">Arsenal</a></li>
-                    <li><a href="#projects">Operations</a></li>
+                    <li class="active"><a href="#phase-1" data-target="phase-1"><span class="phase-num">01</span> Foundations</a></li>
+                    <li><a href="#phase-2" data-target="phase-2"><span class="phase-num">02</span> Recon</a></li>
+                    <li><a href="#phase-3" data-target="phase-3"><span class="phase-num">03</span> Web Hacking</a></li>
+                    <li><a href="#phase-4" data-target="phase-4"><span class="phase-num">04</span> Network Hacking</a></li>
+                    <li><a href="#phase-5" data-target="phase-5"><span class="phase-num">05</span> Exploitation</a></li>
+                    <li><a href="#phase-6" data-target="phase-6"><span class="phase-num">06</span> Active Directory</a></li>
+                    <li><a href="#phase-7" data-target="phase-7"><span class="phase-num">07</span> Red Team Ops</a></li>
+                    <li><a href="#phase-8" data-target="phase-8"><span class="phase-num">08</span> Real World</a></li>
+                    <li><a href="#phase-9" data-target="phase-9"><span class="phase-num">09</span> Professional</a></li>
                 </ul>
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <i class="fa-solid fa-user-secret"></i>
+                        <span>OPERATOR_01</span>
+                    </div>
+                </div>
             </nav>
-            <div class="progress-controls">
-                 <button id="import-btn" title="Import Progress"><i class="fa-solid fa-upload"></i></button>
-                 <button id="export-btn" title="Export Progress"><i class="fa-solid fa-download"></i></button>
-                 <button id="reset-btn" title="Reset Progress"><i class="fa-solid fa-rotate-left"></i></button>
-                 <button id="theme-btn" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
-            </div>
-            <div class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" tabindex="0">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </div>
-        <!-- Secondary Navbar for Phases -->
-        <div id="secondary-nav" aria-label="Phase Navigation">
-            <div class="container phase-nav-content">
-                <a href="#phase-1" class="phase-link" data-target="phase-1">01 Foundations</a>
-                <a href="#phase-2" class="phase-link" data-target="phase-2">02 Recon</a>
-                <a href="#phase-3" class="phase-link" data-target="phase-3">03 Web Hacking</a>
-                <a href="#phase-4" class="phase-link" data-target="phase-4">04 Network Hacking</a>
-                <a href="#phase-5" class="phase-link" data-target="phase-5">05 Exploitation & Priv Esc</a>
-                <a href="#phase-6" class="phase-link" data-target="phase-6">06 Active Directory</a>
-                <a href="#phase-7" class="phase-link" data-target="phase-7">07 Red Team Ops</a>
-                <a href="#phase-8" class="phase-link" data-target="phase-8">08 Real World</a>
-                <a href="#phase-9" class="phase-link" data-target="phase-9">09 Professional</a>
-            </div>
-        </div>
-    </header>
+        </aside>
 
-    <main>
-        <!-- Hero Section -->
+        <main class="main-cockpit">
+        <!-- Dashboard Header / Hero -->
         <section id="hero">
             <div class="hero-bg-overlay"></div>
             <div class="container hero-content">
-                <h4 class="glitch-text" data-text="AUTHORIZATION ACCEPTED...">AUTHORIZATION ACCEPTED...</h4>
-                <h1>MASTER <span class="highlight">OFFENSIVE SECURITY</span></h1>
-                <p class="subtitle">Welcome to the Ethical Hacking Command Center.<br>Initiate your operational directives.</p>
+                <div class="terminal-header">
+                    <span class="control red"></span>
+                    <span class="control yellow"></span>
+                    <span class="control green"></span>
+                    <span class="terminal-title">TERMINAL_COCKPIT.EXE</span>
+                </div>
+                <div class="terminal-body">
+                    <h4 class="glitch-text" data-text="AUTHORIZATION ACCEPTED...">AUTHORIZATION ACCEPTED...</h4>
+                    <h1>ETHICAL HACKING <span class="highlight">COMMAND CENTER</span></h1>
+                    <div id="typing-sub" class="subtitle"></div>
+                </div>
                 <div class="hero-btns">
-                    <a href="#roadmap" class="btn btn-primary">EXECUTE DIRECTIVES <i class="fa-solid fa-terminal"></i></a>
-                    <a href="#tools" class="btn btn-secondary">ACCESS ARSENAL <i class="fa-solid fa-database"></i></a>
+                    <a href="#phase-1" class="btn btn-primary">START MISSION <i class="fa-solid fa-flag"></i></a>
+                    <a href="#roadmap" class="btn btn-secondary">OPEN ROADMAP <i class="fa-solid fa-map"></i></a>
                 </div>
             </div>
-            <div class="scroll-indicator">
-                <span>SCROLL TO INITIALIZE</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
         </section>
+
+        <!-- DASHBOARD WIDGETS ROW -->
+        <div class="dashboard-widgets">
+            <div class="widget status-panel">
+                <div class="widget-header"><i class="fa-solid fa-gauge-high"></i> SYSTEM STATUS</div>
+                <div class="widget-body">
+                    <div class="status-list">
+                        <div class="status-item"><span class="label">CPU ENGINE</span> <span class="val green">ONLINE</span></div>
+                        <div class="status-item"><span class="label">SCANNERS</span> <span class="val green">READY</span></div>
+                        <div class="status-item"><span class="label">EXPLOIT DB</span> <span class="val green">LOADED</span></div>
+                        <div class="status-item"><span class="label">RED TEAM KIT</span> <span class="val">ACTIVE</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget progress-panel">
+                <div class="widget-header"><i class="fa-solid fa-chart-line"></i> LEARNING PROGRESS</div>
+                <div class="widget-body">
+                    <div class="progress-info">
+                        <span id="progress-text">0/172 Ops Completed</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="main-progress-bar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget skills-panel">
+                <div class="widget-header"><i class="fa-solid fa-microchip"></i> SKILL TRACKER</div>
+                <div class="widget-body">
+                    <div class="skill-checklist">
+                        <label class="skill-item">
+                            <input type="checkbox" data-skill="networking"> 
+                            <span class="checkmark"></span> Networking
+                        </label>
+                        <label class="skill-item">
+                            <input type="checkbox" data-skill="linux"> 
+                            <span class="checkmark"></span> Linux CLI
+                        </label>
+                        <label class="skill-item">
+                            <input type="checkbox" data-skill="web"> 
+                            <span class="checkmark"></span> Web Hacking
+                        </label>
+                        <label class="skill-item">
+                            <input type="checkbox" data-skill="networks"> 
+                            <span class="checkmark"></span> Net Attacks
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Roadmap Section -->
         <section id="roadmap">
             <div class="container">
-                <h2 class="section-title"><span class="highlight">01.</span> OPERATIONAL DIRECTIVES</h2>
+                <h2 class="section-title"><span class="highlight">01.</span> HACKER ROADMAP</h2>
 
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -602,9 +668,9 @@
         <!-- Tools Database Section -->
         <section id="tools">
             <div class="container">
-                <h2 class="section-title"><span class="highlight">02.</span> WEAPONS ARSENAL</h2>
+                <h2 class="section-title"><span class="highlight">02.</span> THE TOOLKIT</h2>
                 <div class="search-container">
-                    <input type="text" id="tool-search" class="search-input" placeholder="Search arsenal (e.g. Burp, Nmap, Metasploit)...">
+                    <input type="text" id="tool-search" class="search-input" placeholder="Search toolkit (e.g. Burp, Nmap, Metasploit)...">
                 </div>
                 <div class="tools-grid-container" id="tools-db">
                     <div class="tool-item" data-category="Recon">
@@ -644,47 +710,136 @@
         <!-- Projects Section -->
         <section id="projects">
             <div class="container">
-                <h2 class="section-title"><span class="highlight">03.</span> OPERATIONAL LOGS</h2>
+                <h2 class="section-title"><span class="highlight">03.</span> OFFENSIVE PROJECTS</h2>
                 <div class="projects-grid">
+                    <!-- Project 1 -->
                     <div class="project-card">
-                        <h3>Active Directory Lab Setup</h3>
-                        <p>Deployed a custom Active Directory environment using Proxmox to practice Kerberoasting, AS-REP roasting, and pivoting.</p>
+                        <h3>Home Ethical Hacking Lab</h3>
+                        <p>Set up a complete virtualization environment with Kali, Metasploitable, and Windows targets.</p>
                         <div class="project-tags">
-                            <span class="tag">Active Directory</span>
-                            <span class="tag">Virtualization</span>
+                            <span class="tag">VirtualBox</span> <span class="tag">Kali Linux</span>
                         </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
                     </div>
+                    <!-- Project 2 -->
                     <div class="project-card">
-                        <h3>Custom Python C2</h3>
-                        <p>Developed a basic Command and Control server in Python with AES encryption to bypass static evasion techniques.</p>
+                        <h3>Network Vulnerability Scanner</h3>
+                        <p>Automation script in Python to scan internal networks for common CVEs and misconfigurations.</p>
                         <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">C2 Evasion</span>
+                            <span class="tag">Python</span> <span class="tag">Nmap</span>
                         </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
                     </div>
+                    <!-- Project 3 -->
                     <div class="project-card">
-                        <h3>Web App Vulnerability Report</h3>
-                        <p>Detailed technical write-up of demonstrating chained XSS and SSRF exploits on an intentionally vulnerable web app.</p>
+                        <h3>Web Vulnerability Scanner</h3>
+                        <p>Burp Suite extension designed to identify hidden parameters and logical flaws in REST APIs.</p>
                         <div class="project-tags">
-                            <span class="tag">Bug Bounty</span>
-                            <span class="tag">Reporting</span>
+                            <span class="tag">Java</span> <span class="tag">Burp API</span>
                         </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <h3>Bug Bounty Recon Tool</h3>
+                        <p>Personalized OSINT engine that aggregates data from Shodan, Censys, and Subfinder.</p>
+                        <div class="project-tags">
+                            <span class="tag">Bash</span> <span class="tag">Go</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <h3>OWASP Top 10 Exploitation Lab</h3>
+                        <p>Documentation of chaining SQLi, XSS, and SSRF in a test environment to gain RCE.</p>
+                        <div class="project-tags">
+                            <span class="tag">Lab Ops</span> <span class="tag">Exploit chain</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <h3>Password Cracking Lab</h3>
+                        <p>Benchmarking various hash algorithms using high-performance GPU clusters and custom wordlists.</p>
+                        <div class="project-tags">
+                            <span class="tag">Hashcat</span> <span class="tag">GPU Ops</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 7 -->
+                    <div class="project-card">
+                        <h3>Privilege Escalation Playbook</h3>
+                        <p>Comprehensive guide to bypassing UAC and gaining root access on various OS kernels.</p>
+                        <div class="project-tags">
+                            <span class="tag">Linux</span> <span class="tag">Windows</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 8 -->
+                    <div class="project-card">
+                        <h3>Active Directory Attack Lab</h3>
+                        <p>Kerberoasting and AS-REP Roasting simulations against a multi-domain forest mockup.</p>
+                        <div class="project-tags">
+                            <span class="tag">AD</span> <span class="tag">Bloodhound</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 9 -->
+                    <div class="project-card">
+                        <h3>Network Exploitation Lab</h3>
+                        <p>Exploiting legacy protocols (SMB, FTP) to demonstrate the inherent risks of unpatched systems.</p>
+                        <div class="project-tags">
+                            <span class="tag">Metasploit</span> <span class="tag">Pivoting</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 10 -->
+                    <div class="project-card">
+                        <h3>Red Team C2 Lab</h3>
+                        <p>Command and Control orchestration using Sliver with custom malleable C2 profiles.</p>
+                        <div class="project-tags">
+                            <span class="tag">C2</span> <span class="tag">Evasion</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 11 -->
+                    <div class="project-card">
+                        <h3>CTF Writeups Repository</h3>
+                        <p>Centralized archive of technical solutions for HackTheBox and TryHackMe insane-rated machines.</p>
+                        <div class="project-tags">
+                            <span class="tag">CTF</span> <span class="tag">Reports</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
+                    </div>
+                    <!-- Project 12 -->
+                    <div class="project-card">
+                        <h3>Professional Pentest Report</h3>
+                        <p>Anonymized real-world penetration test report following CREST and NIST standards.</p>
+                        <div class="project-tags">
+                            <span class="tag">Reporting</span> <span class="tag">NIST</span>
+                        </div>
+                        <a href="#" class="btn-git"><i class="fa-brands fa-github"></i> REPO_STUB</a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <p>&copy; 2026 CYBERMAP | HACKER COMMAND CENTER.</p>
+                <div class="social-links">
+                    <a href="https://github.com/batyaboyo" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github-alt"></i></a>
+                    <a href="https://linkedin.com/in/batyaboyo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </footer>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 CYBERMAP | HACKER COMMAND CENTER.</p>
-            <div class="social-links">
-                <a href="https://github.com/batyaboyo" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github-alt"></i></a>
-                <a href="https://linkedin.com/in/batyaboyo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
+    </div> <!-- END dashboard-container -->
+
+    <!-- Sidebar overlay for mobile -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
     <!-- Utilities -->
     <div id="back-to-top" class="back-to-top" title="Back to Top">
