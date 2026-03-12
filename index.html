@@ -35,6 +35,11 @@
                     <span class="stat-item"><i class="fa-solid fa-wifi"></i> NET: <span class="highlight">SECURE</span></span>
                     <span class="stat-item"><i class="fa-solid fa-shield-halved"></i> FIREWALL: <span class="highlight">ACTIVE</span></span>
                 </div>
+                <nav class="top-nav">
+                    <a href="#roadmap" class="top-nav-link">Roadmap</a>
+                    <a href="#tools" class="top-nav-link">Toolkit</a>
+                    <a href="#projects" class="top-nav-link">Projects</a>
+                </nav>
                 <div class="header-actions">
                     <div class="progress-controls">
                         <button id="import-btn" title="Import Progress"><i class="fa-solid fa-upload"></i></button>
@@ -64,10 +69,18 @@
                     <li><a href="#phase-9" data-target="phase-9"><span class="phase-num">09</span> Professional</a></li>
                 </ul>
                 <div class="sidebar-footer">
-                    <div class="user-profile">
-                        <i class="fa-solid fa-user-secret"></i>
-                        <span>OPERATOR_01</span>
+                    <div class="sidebar-progress">
+                        <div class="sidebar-progress-label">
+                            <span>TOTAL PROGRESS</span>
+                            <span id="sidebar-progress-pct">0%</span>
+                        </div>
+                        <div class="sidebar-progress-bar-container">
+                            <div id="sidebar-progress-bar" class="sidebar-progress-bar"></div>
+                        </div>
                     </div>
+                    <button id="reset-progress-btn" class="reset-btn" title="Reset all progress">
+                        <i class="fa-solid fa-rotate-left"></i> RESET
+                    </button>
                 </div>
             </nav>
         </aside>
@@ -150,7 +163,12 @@
         <!-- Roadmap Section -->
         <section id="roadmap">
             <div class="container">
-                <h2 class="section-title"><span class="highlight">01.</span> HACKER ROADMAP</h2>
+                <div class="section-header-row">
+                    <h2 class="section-title"><span class="highlight">01.</span> HACKER ROADMAP</h2>
+                    <button id="toggle-all-phases" class="toggle-all-btn" title="Expand / Collapse All">
+                        <i class="fa-solid fa-angles-down"></i> EXPAND ALL
+                    </button>
+                </div>
 
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -670,6 +688,7 @@
             <div class="container">
                 <h2 class="section-title"><span class="highlight">02.</span> THE TOOLKIT</h2>
                 <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" id="tool-search" class="search-input" placeholder="Search toolkit (e.g. Burp, Nmap, Metasploit)...">
                 </div>
                 <div class="tools-grid-container" id="tools-db">

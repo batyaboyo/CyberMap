@@ -91,6 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let savedProgress = JSON.parse(localStorage.getItem('hackerCommandCenterProgress')) || {};
     let savedSkills = JSON.parse(localStorage.getItem('hackerSidebarSkills')) || {};
 
+    const sidebarProgressBar = document.getElementById('sidebar-progress-bar');
+    const sidebarProgressPct = document.getElementById('sidebar-progress-pct');
+
     const updateAllProgress = () => {
         const totalOps = progressTargets.length;
         const completedOps = Object.values(savedProgress).filter(Boolean).length;
@@ -99,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if(mainProgressBar) mainProgressBar.style.width = `${percentage}%`;
         if(mainProgressPercent) mainProgressPercent.innerText = `${percentage}%`;
         if(mainProgressText) mainProgressText.innerText = `${completedOps}/${totalOps} Operations Secure`;
+
+        // Sidebar progress bar
+        if (sidebarProgressBar) sidebarProgressBar.style.width = `${percentage}%`;
+        if (sidebarProgressPct) sidebarProgressPct.textContent = `${percentage}%`;
 
         // Update per-phase progress in sidebar
         updatePhaseProgress();
@@ -180,23 +187,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarLinks = document.querySelectorAll('.sidebar li a');
     const sections = document.querySelectorAll('.phase-card');
 
+    const scrollCockpitTo = (targetId) => {
+        const targetElement = document.querySelector(targetId);
+        const cockpit = document.querySelector('.main-cockpit');
+        if (targetElement && cockpit) {
+            const targetPos = targetElement.getBoundingClientRect().top;
+            const cockpitPos = cockpit.getBoundingClientRect().top;
+            const offset = targetPos - cockpitPos + cockpit.scrollTop - 20;
+            cockpit.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+    };
+
     sidebarLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            const cockpit = document.querySelector('.main-cockpit');
-            
-            if(targetElement && cockpit) {
-                const targetPos = targetElement.getBoundingClientRect().top;
-                const cockpitPos = cockpit.getBoundingClientRect().top;
-                const offset = targetPos - cockpitPos + cockpit.scrollTop - 20;
-
-                cockpit.scrollTo({
-                    top: offset,
-                    behavior: 'smooth'
-                });
-            }
+            scrollCockpitTo(link.getAttribute('href'));
             // Auto-close sidebar on mobile
             if (window.innerWidth <= 1024) {
                 closeSidebar();
@@ -204,8 +209,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Hero buttons & any in-page anchor links inside main-cockpit
+    document.querySelectorAll('.hero-btns a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollCockpitTo(link.getAttribute('href'));
+        });
+    });
+
+    // Top nav links
+    document.querySelectorAll('.top-nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollCockpitTo(link.getAttribute('href'));
+        });
+    });
+
     // Intersection Observer for Sidebar
     const obsOptions = { root: document.querySelector('.main-cockpit'), threshold: 0.3 };
+    const topNavLinks = document.querySelectorAll('.top-nav-link');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -215,11 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isActive = link.getAttribute('href') === `#${id}`;
                     parent.classList.toggle('active', isActive);
                 });
+                topNavLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
             }
         });
     }, obsOptions);
 
     sections.forEach(section => observer.observe(section));
+    document.querySelectorAll('#roadmap, #tools, #projects').forEach(section => {
+        if (section) observer.observe(section);
+    });
 
     // --- 7. SEARCH ---
     // Toolkit search
@@ -293,6 +321,45 @@ document.addEventListener('DOMContentLoaded', () => {
             if(icon) { icon.classList.toggle('fa-plus', !isActive); icon.classList.toggle('fa-minus', isActive); }
         });
     });
+
+    // Expand / Collapse All
+    const toggleAllBtn = document.getElementById('toggle-all-phases');
+    if (toggleAllBtn) {
+        let allExpanded = false;
+        toggleAllBtn.addEventListener('click', () => {
+            allExpanded = !allExpanded;
+            document.querySelectorAll('.phase-card').forEach(card => {
+                const content = card.querySelector('.phase-content');
+                const icon = card.querySelector('.expand-icon i');
+                if (content) content.classList.toggle('active', allExpanded);
+                if (icon) { icon.classList.toggle('fa-plus', !allExpanded); icon.classList.toggle('fa-minus', allExpanded); }
+            });
+            const btnIcon = toggleAllBtn.querySelector('i');
+            if (btnIcon) { btnIcon.classList.toggle('fa-angles-down', !allExpanded); btnIcon.classList.toggle('fa-angles-up', allExpanded); }
+            toggleAllBtn.innerHTML = allExpanded
+                ? '<i class="fa-solid fa-angles-up"></i> COLLAPSE ALL'
+                : '<i class="fa-solid fa-angles-down"></i> EXPAND ALL';
+        });
+    }
+
+    // Reset Progress
+    const resetBtn = document.getElementById('reset-progress-btn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (!confirm('Reset all progress? This cannot be undone.')) return;
+            savedProgress = {};
+            savedSkills = {};
+            localStorage.removeItem('hackerCommandCenterProgress');
+            localStorage.removeItem('hackerSidebarSkills');
+            progressTargets.forEach(li => {
+                li.classList.remove('strikethrough');
+                const cb = li.querySelector('.custom-cb');
+                if (cb) { cb.classList.remove('checked'); cb.setAttribute('aria-checked', false); }
+            });
+            skillCheckboxes.forEach(cb => { cb.checked = false; });
+            updateAllProgress();
+        });
+    }
 
     // --- 10. BACK TO TOP ---
     const backToTop = document.getElementById('back-to-top');
@@ -371,4 +438,16 @@ document.addEventListener('DOMContentLoaded', () => {
             input.click();
         });
     }
+
+    // --- 12. KEYBOARD SHORTCUTS ---
+    document.addEventListener('keydown', (e) => {
+        // Escape → close sidebar on mobile
+        if (e.key === 'Escape') closeSidebar();
+        // "/" → focus roadmap search (unless already in an input)
+        if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+            e.preventDefault();
+            if (resourceSearch) resourceSearch.focus();
+        }
+    });
+
 });
