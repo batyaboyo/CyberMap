@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 0. THEME MANAGER ---
+    const themeBtn = document.getElementById('theme-btn');
+    const savedTheme = localStorage.getItem('hackerCmdTheme');
+    
+    // Apply saved theme on load
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        if (themeBtn) themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const isLight = document.body.classList.contains('light-theme');
+            
+            // Toggle Icon
+            themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            
+            // Save Preference
+            localStorage.setItem('hackerCmdTheme', isLight ? 'light' : 'dark');
+        });
+    }
+
     // --- 1. LOCAL STORAGE & PROGRESS TRACKER ---
 
     // Generate valid IDs for list items to track them consistently
@@ -46,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateProgressUI = () => {
         const percentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
         if(dashboardUI.bar) dashboardUI.bar.style.width = `${percentage}%`;
-        if(dashboardUI.text) dashboardUI.text.innerText = `${percentage}%`;
+        if(dashboardUI.text) dashboardUI.text.innerText = `${completedItems}/${totalItems} Ops (${percentage}%)`;
 
         if (percentage === 100 && dashboardUI.text) {
             dashboardUI.text.innerText = "100% - MASTER OPERATOR";

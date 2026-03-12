@@ -13,9 +13,42 @@
     
     --glass-border: 1px solid rgba(0, 255, 136, 0.2);
     --neon-glow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.2);
-    --cyan-glow: 0 0 10px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.2);
-    
     --selection-bg: var(--primary-color);
+    
+    --heading-color: #ffffff;
+    --subtext-color: #aaaaaa;
+    --section-bg-1: #000000;
+    --section-bg-2: #020202;
+    --card-border: #222222;
+    --nav-bg: rgba(5, 5, 5, 0.9);
+    --secondary-nav-bg: rgba(0, 0, 0, 0.95);
+    --btn-text: #000000;
+    --footer-bg: #000000;
+}
+
+/* Light Theme Overrides */
+body.light-theme {
+    --bg-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --primary-color: #00aa55;
+    --secondary-color: #0077cc;
+    --accent-color: #ee0044;
+    --text-color: #222222;
+    --text-muted: #555555;
+    
+    --glass-border: 1px solid rgba(0, 170, 85, 0.2);
+    --neon-glow: 0 0 10px rgba(0, 170, 85, 0.2), 0 0 20px rgba(0, 170, 85, 0.1);
+    --cyan-glow: 0 0 10px rgba(0, 119, 204, 0.2), 0 0 20px rgba(0, 119, 204, 0.1);
+
+    --heading-color: #111111;
+    --subtext-color: #444444;
+    --section-bg-1: #f0f2f5;
+    --section-bg-2: #e8eaed;
+    --card-border: #dddddd;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --secondary-nav-bg: rgba(245, 245, 245, 0.95);
+    --btn-text: #ffffff;
+    --footer-bg: #e0e5ea;
 }
 
 /* CRT & Scanline Effects */
@@ -35,6 +68,15 @@
     pointer-events: none;
     z-index: 9999;
     opacity: 0.3;
+}
+
+body.light-theme .crt-overlay {
+    opacity: 0.1;
+    background: radial-gradient(circle, rgba(0,170,85,0.01) 0%, rgba(0,0,0,0.05) 100%);
+}
+
+body.light-theme .scanlines {
+    opacity: 0.05;
 }
 
 * {
@@ -120,13 +162,14 @@ ul {
 
 .btn-primary {
     background: var(--primary-color);
-    color: #000;
+    color: var(--btn-text);
     box-shadow: var(--neon-glow);
 }
 
 .btn-primary:hover {
-    background: #fff;
-    box-shadow: 0 0 20px #fff;
+    background: var(--heading-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--heading-color);
 }
 
 .btn-secondary {
@@ -145,7 +188,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(5, 5, 5, 0.9);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border-bottom: var(--glass-border);
     padding: 1rem 0;
@@ -162,7 +205,7 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #fff;
+    color: var(--heading-color);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -218,7 +261,7 @@ nav a:hover {
 
 /* Secondary Navbar */
 #secondary-nav {
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--secondary-nav-bg);
     border-bottom: 1px solid rgba(0, 255, 136, 0.1);
     padding: 0.5rem 0;
     overflow-x: auto;
@@ -253,7 +296,7 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: #000;
+    background: var(--section-bg-1);
     overflow: hidden;
 }
 
@@ -275,6 +318,7 @@ nav a:hover {
 h1 {
     font-family: var(--font-heading);
     font-size: 4.5rem;
+    color: var(--heading-color);
     line-height: 1.1;
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -292,7 +336,7 @@ h1 {
 
 .subtitle {
     font-size: 1.2rem;
-    color: #aaa;
+    color: var(--subtext-color);
     margin-bottom: 2.5rem;
     font-family: var(--font-mono);
 }
@@ -328,7 +372,7 @@ h1 {
 /* Roadmap / Directives */
 #roadmap {
     padding: 100px 0;
-    background: linear-gradient(180deg, #000 0%, #050505 100%);
+    background: var(--bg-color);
 }
 
 .search-container {
@@ -380,7 +424,8 @@ h1 {
 .phase-card:hover {
     border-left-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
-    background: rgba(20, 20, 20, 0.9);
+    background: var(--card-bg);
+    opacity: 0.95;
 }
 
 .phase-header {
@@ -401,7 +446,7 @@ h1 {
 .phase-title h3 {
     font-family: var(--font-heading);
     font-size: 1.3rem;
-    color: #fff;
+    color: var(--heading-color);
     letter-spacing: 1px;
 }
 
@@ -437,7 +482,7 @@ h1 {
 
 .content-block h4 {
     font-family: var(--font-mono);
-    color: #fff;
+    color: var(--heading-color);
     margin-bottom: 1rem;
     border-bottom: 1px dashed rgba(0, 255, 136, 0.3);
     padding-bottom: 0.5rem;
@@ -450,16 +495,16 @@ h1 {
 
 .content-block ul {
     font-size: 0.95rem;
-    color: #bbb;
+    color: var(--subtext-color);
 }
 
-.content-block ul li {
+.content-block ul:not(.resource-list) li {
     margin-bottom: 0.6rem;
     padding-left: 1.5rem;
     position: relative;
 }
 
-.content-block ul li::before {
+.content-block ul:not(.resource-list) li::before {
     content: '>';
     position: absolute;
     left: 0;
@@ -497,6 +542,12 @@ h1 {
     border: 1px solid var(--secondary-color);
 }
 
+.tag.project {
+    background: rgba(255, 170, 0, 0.1);
+    color: #ffaa00;
+    border: 1px solid #ffaa00;
+}
+
 .resource-list a:hover {
     color: var(--primary-color);
     text-decoration: underline;
@@ -505,7 +556,7 @@ h1 {
 /* Tools Database */
 #tools {
     padding: 100px 0;
-    background: #020202;
+    background: var(--section-bg-2);
     border-top: 1px solid rgba(0,255,136,0.1);
 }
 
@@ -516,8 +567,8 @@ h1 {
 }
 
 .tool-item {
-    background: rgba(10, 10, 10, 0.9);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: 1.5rem;
     position: relative;
     border-radius: 4px;
@@ -539,14 +590,14 @@ h1 {
 
 .tool-item h3 {
     font-family: var(--font-mono);
-    color: #fff;
+    color: var(--heading-color);
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
 }
 
 .tool-item p {
     font-size: 0.9rem;
-    color: #999;
+    color: var(--subtext-color);
     margin-bottom: 1.5rem;
 }
 
@@ -565,7 +616,7 @@ h1 {
 /* Projects Section */
 #projects {
     padding: 100px 0;
-    background: #050505;
+    background: var(--section-bg-1);
 }
 
 .projects-grid {
@@ -575,8 +626,8 @@ h1 {
 }
 
 .project-card {
-    background: #0a0a0a;
-    border: 1px solid #222;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: 2rem;
     border-radius: 4px;
     transition: all 0.3s;
@@ -589,14 +640,14 @@ h1 {
 
 .project-card h3 {
     font-family: var(--font-heading);
-    color: #fff;
+    color: var(--heading-color);
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
 
 .project-card p {
     font-size: 0.95rem;
-    color: #aaa;
+    color: var(--subtext-color);
     margin-bottom: 1.5rem;
 }
 
@@ -615,8 +666,8 @@ h1 {
 
 /* Footer & Back to Top */
 footer {
-    background: #000;
-    border-top: 1px solid #111;
+    background: var(--footer-bg);
+    border-top: 1px solid var(--card-border);
     padding: 2rem 0;
     text-align: center;
 }
@@ -624,7 +675,7 @@ footer {
 .footer-content p {
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 1rem;
 }
 
@@ -635,7 +686,7 @@ footer {
 }
 
 .social-links a {
-    color: #666;
+    color: var(--text-muted);
     font-size: 1.5rem;
 }
 
@@ -671,7 +722,7 @@ footer {
 
 .back-to-top:hover {
     background: var(--primary-color);
-    color: #000;
+    color: var(--btn-text);
     box-shadow: var(--neon-glow);
 }
 
@@ -683,7 +734,7 @@ footer {
     nav {
         position: absolute;
         top: 100%; left: 0; width: 100%;
-        background: rgba(0,0,0,0.95);
+        background: var(--secondary-nav-bg);
         border-bottom: 1px solid var(--primary-color);
         display: none;
     }

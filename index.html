@@ -40,6 +40,7 @@
                  <button id="import-btn" title="Import Progress"><i class="fa-solid fa-upload"></i></button>
                  <button id="export-btn" title="Export Progress"><i class="fa-solid fa-download"></i></button>
                  <button id="reset-btn" title="Reset Progress"><i class="fa-solid fa-rotate-left"></i></button>
+                 <button id="theme-btn" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
             </div>
             <div class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" tabindex="0">
                 <i class="fa-solid fa-bars"></i>
@@ -51,11 +52,12 @@
                 <a href="#phase-1" class="phase-link" data-target="phase-1">01 Foundations</a>
                 <a href="#phase-2" class="phase-link" data-target="phase-2">02 Recon</a>
                 <a href="#phase-3" class="phase-link" data-target="phase-3">03 Web Hacking</a>
-                <a href="#phase-4" class="phase-link" data-target="phase-4">04 Exploitation</a>
-                <a href="#phase-5" class="phase-link" data-target="phase-5">05 Active Directory</a>
-                <a href="#phase-6" class="phase-link" data-target="phase-6">06 Red Team Ops</a>
-                <a href="#phase-7" class="phase-link" data-target="phase-7">07 Real World</a>
-                <a href="#phase-8" class="phase-link" data-target="phase-8">08 Professional</a>
+                <a href="#phase-4" class="phase-link" data-target="phase-4">04 Network Hacking</a>
+                <a href="#phase-5" class="phase-link" data-target="phase-5">05 Exploitation & Priv Esc</a>
+                <a href="#phase-6" class="phase-link" data-target="phase-6">06 Active Directory</a>
+                <a href="#phase-7" class="phase-link" data-target="phase-7">07 Red Team Ops</a>
+                <a href="#phase-8" class="phase-link" data-target="phase-8">08 Real World</a>
+                <a href="#phase-9" class="phase-link" data-target="phase-9">09 Professional</a>
             </div>
         </div>
     </header>
@@ -94,7 +96,7 @@
                     <!-- PHASE 01 -->
                     <article class="phase-card" id="phase-1">
                         <div class="phase-header">
-                            <div class="phase-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <div class="phase-icon"><i class="fa-solid fa-terminal"></i></div>
                             <div class="phase-title">
                                 <h3>PHASE 01: FOUNDATIONS</h3>
                                 <span class="duration">NETWORKING, LINUX & SCRIPTING</span>
@@ -114,11 +116,33 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Wireshark</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Nmap</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Tcpdump</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Tmux</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">cURL</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Wget</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Netcat</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Htop</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Pfsense</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Vim / Nano</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
                                     <ul class="resource-list">
                                         <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/path/outline/presecurity" target="_blank">THM: Pre-Security Path</a></li>
-                                        <li><span class="tag free">FREE</span> <a href="https://overthewire.org/wargames/bandit/" target="_blank">OverTheWire: Bandit (Linux)</a></li>
-                                        <li><span class="tag paid">PAID</span> <a href="https://academy.hackthebox.com/path/preview/information-security-foundations" target="_blank">HTB: InfoSec Foundations</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://overthewire.org/wargames/bandit/" target="_blank">OverTheWire: Bandit</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://skillsforall.com/" target="_blank">Cisco: Networking Basics</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hackthebox.com/" target="_blank">HTB: Intro to Networking</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-training-course/" target="_blank">Professor Messer: Network+</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://linuxjourney.com/" target="_blank">Linux Journey</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.codecademy.com/learn/learn-python-3" target="_blank">Codecademy: Python 3</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.freecodecamp.org/learn/information-security/" target="_blank">FCC: InfoSec Certification</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.cybrary.it/" target="_blank">Cybrary: IT Foundations</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://picoctf.org/" target="_blank">PicoCTF: General Skills</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -148,10 +172,33 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Maltego CE</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Masscan</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Amass</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Subfinder</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Gobuster</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Ffuf</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Recon-ng</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">TheHarvester</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Shodan CLI</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Whois / Dig</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
                                     <ul class="resource-list">
                                         <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/module/reconnaissance" target="_blank">THM: Reconnaissance</a></li>
                                         <li><span class="tag free">FREE</span> <a href="https://osintframework.com/" target="_blank">OSINT Framework</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hackthebox.com/" target="_blank">HTB: Footprinting</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.tracelabs.org/initiatives/osint-vm" target="_blank">TraceLabs OSINT VM</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">Exploit-DB: Google Dorking</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.bellingcat.com/category/resources/" target="_blank">Bellingcat: OSINT Guides</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://inteltechniques.com/" target="_blank">IntelTechniques Podcast</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/playlist?list=PLKAaMVNxvLmAkqBkcFaJhaJcz5OwTEYJo" target="_blank">YouTube: NahamSec Recon</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank">GitHub: PayloadAllTheThings</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://book.hacktricks.xyz/" target="_blank">HackTricks: Enum</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -181,11 +228,33 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag free">FREE</span> <a href="https://portswigger.net/web-security" target="_blank">PortSwigger Web Security Academy</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Burp Suite CE</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">OWASP ZAP</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">SQLmap</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Nikto</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Wfuzz</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">XSSer</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Commix</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Dirsearch</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Arjun</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Postman</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://portswigger.net/web-security" target="_blank">PortSwigger Web Academy</a></li>
                                         <li><span class="tag free">FREE</span> <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank">OWASP WSTG</a></li>
-                                        <li><span class="tag paid">PAID</span> <a href="https://academy.hackthebox.com/path/preview/bug-bounty-hunter" target="_blank">HTB: Bug Bounty Path</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/path/outline/web" target="_blank">THM: Web Fundamentals</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.bugcrowd.com/resources/bugcrowd-university/" target="_blank">Bugcrowd University</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hacker101.com/" target="_blank">Hacker101</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hackthebox.com/" target="_blank">HTB: Bug Bounty (Free Tier)</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://pentesterlab.com/badges/bootcamp" target="_blank">PentesterLab: Bootcamp</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/c/InsiderPhD" target="_blank">YouTube: InsiderPhD</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/danielmiessler/SecLists" target="_blank">GitHub: SecLists</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://leanpub.com/web-hacking-101" target="_blank">Web Hacking 101</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -195,10 +264,10 @@
                     <!-- PHASE 04 -->
                     <article class="phase-card" id="phase-4">
                         <div class="phase-header">
-                            <div class="phase-icon"><i class="fa-solid fa-skull-crossbones"></i></div>
+                            <div class="phase-icon"><i class="fa-solid fa-network-wired"></i></div>
                             <div class="phase-title">
-                                <h3>PHASE 04: EXPLOITATION & PRIV ESC</h3>
-                                <span class="duration">SYSTEM BREACH & ESCALATION</span>
+                                <h3>PHASE 04: NETWORK HACKING</h3>
+                                <span class="duration">INTERNAL NETWORKS & PIVOTING</span>
                             </div>
                             <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
                         </div>
@@ -215,11 +284,33 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag paid">PAID</span> <a href="https://certifications.tcm-sec.com/pnpt/" target="_blank">TCM Security: PNPT Prep</a></li>
-                                        <li><span class="tag free">FREE</span> <a href="https://gtfobins.github.io/" target="_blank">GTFOBins</a> / <a href="https://lolbas-project.github.io/" target="_blank">LOLBAS</a></li>
-                                        <li><span class="tag free">LAB</span> <a href="https://www.hackthebox.com/" target="_blank">HackTheBox Machines</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Metasploit Framework</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Searchsploit</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Hashcat</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">John the Ripper</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">LinPEAS</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">WinPEAS</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Chisel</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Hydra</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Responder</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">NetExec</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/path/outline/pentestplus" target="_blank">THM: PenTest+ (Free Rooms)</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hackthebox.com/" target="_blank">HTB: Linux/Windows Basics</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://gtfobins.github.io/" target="_blank">GTFOBins</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://lolbas-project.github.io/" target="_blank">LOLBAS</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.exploit-db.com/" target="_blank">Exploit-DB</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources/Privilege%20Escalation" target="_blank">PayloadsAllTheThings: PrivEsc</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.sans.org/blog/penetration-testing/" target="_blank">SANS PenTest Blog</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/c/ippsec" target="_blank">YouTube: IppSec</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://wadcoms.github.io/" target="_blank">WADComs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.vulnhub.com/" target="_blank">VulnHub</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -229,9 +320,63 @@
                     <!-- PHASE 05 -->
                     <article class="phase-card" id="phase-5">
                         <div class="phase-header">
+                            <div class="phase-icon"><i class="fa-solid fa-skull-crossbones"></i></div>
+                            <div class="phase-title">
+                                <h3>PHASE 05: EXPLOITATION & PRIVILEGE ESCALATION</h3>
+                                <span class="duration">Learn how attackers exploit vulnerabilities and gain deeper access to compromised systems.</span>
+                            </div>
+                            <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
+                        </div>
+                        <div class="phase-content">
+                            <div class="content-grid">
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-list-check"></i> CORE SKILLS</h4>
+                                    <ul>
+                                        <li>Exploit fundamentals</li>
+                                        <li>Vulnerability exploitation</li>
+                                        <li>Remote code execution</li>
+                                        <li>Linux privilege escalation</li>
+                                        <li>Windows privilege escalation</li>
+                                        <li>Password cracking</li>
+                                        <li>Post-exploitation techniques</li>
+                                        <li>Maintaining access</li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Metasploit</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Searchsploit</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Hydra</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Hashcat</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">John the Ripper</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">LinPEAS</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">WinPEAS</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Netcat</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> LABS & PROJECTS</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag lab">LAB</span> <a href="#" target="_blank">Hack The Box exploitation machines</a></li>
+                                        <li><span class="tag lab">LAB</span> <a href="#" target="_blank">TryHackMe privilege escalation labs</a></li>
+                                        <li><span class="tag lab">LAB</span> <a href="#" target="_blank">Metasploitable practice machines</a></li>
+                                        <li><span class="tag project">PROJECT</span> <a href="#" target="_blank">Exploitation Lab Setup</a></li>
+                                        <li><span class="tag project">PROJECT</span> <a href="#" target="_blank">Privilege Escalation Playbook</a></li>
+                                        <li><span class="tag project">PROJECT</span> <a href="#" target="_blank">Password Cracking Lab</a></li>
+                                        <li><span class="tag project">PROJECT</span> <a href="#" target="_blank">Post-Exploitation Toolkit scripts</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PHASE 06 -->
+                    <article class="phase-card" id="phase-6">
+                        <div class="phase-header">
                             <div class="phase-icon"><i class="fa-brands fa-windows"></i></div>
                             <div class="phase-title">
-                                <h3>PHASE 05: ACTIVE DIRECTORY ATTACKS</h3>
+                                <h3>PHASE 06: ACTIVE DIRECTORY ATTACKS</h3>
                                 <span class="duration">DOMAIN CONTROLLER COMPROMISE</span>
                             </div>
                             <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
@@ -249,22 +394,45 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag paid">PAID</span> <a href="https://www.offsec.com/courses/pen-200/" target="_blank">OSCP Prep (AD Sections)</a></li>
-                                        <li><span class="tag paid">PAID</span> <a href="https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course" target="_blank">TCM: Practical Ethical Hacking</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">BloodHound CE</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">SharpHound</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">PowerView</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Rubeus</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Impacket Scripts</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Mimikatz</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Responder</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">NetExec</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Evil-WinRM</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Certify</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/module/active-directory" target="_blank">THM: Active Directory</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://blog.wazehell.io/2020/05/22/active-directory-lab-setup/" target="_blank">WazeHell: AD Lab Setup</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://posts.specterops.io/" target="_blank">SpecterOps Blog</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank">PayloadsAllTheThings: AD</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://book.hacktricks.xyz/" target="_blank">HackTricks: Active Directory</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://adsecurity.org/" target="_blank">ADSecurity.org</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/c/TheCyberMentor" target="_blank">TCM: AD YouTube Series</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://blog.harmj0y.net/" target="_blank">Harmj0y Blog</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/Orange-Cyberdefense/GOAD" target="_blank">Orange Cyberdefense: GOAD</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://exploit.ph/" target="_blank">Exploit.ph: AD Scripts</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <!-- PHASE 06 -->
-                    <article class="phase-card" id="phase-6">
+                    <!-- PHASE 07 -->
+                    <article class="phase-card" id="phase-7">
                         <div class="phase-header">
                             <div class="phase-icon"><i class="fa-solid fa-dragon"></i></div>
                             <div class="phase-title">
-                                <h3>PHASE 06: RED TEAM OPERATIONS</h3>
+                                <h3>PHASE 07: RED TEAM OPERATIONS</h3>
                                 <span class="duration">EVASION, C2 & ADVANCED THREATS</span>
                             </div>
                             <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
@@ -275,30 +443,52 @@
                                     <h4><i class="fa-solid fa-list-check"></i> CORE SKILLS</h4>
                                     <ul>
                                         <li>AV / EDR Evasion Techniques</li>
-                                        <li>C2 Deployment (Cobalt Strike, Havoc, Sliver)</li>
-                                        <li>Lateral Movement & Pivoting (Chisel, Ligolo)</li>
+                                        <li>C2 Deployment (Havoc, Sliver, Covenant)</li>
+                                        <li>Lateral Movement & Pivoting (Ligolo-ng)</li>
                                         <li>Living Off the Land & Fileless Malware</li>
                                         <li>Advanced Phishing / Initial Access (Macros, RTF)</li>
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag paid">PAID</span> <a href="https://training.zeropointsecurity.co.uk/courses/red-team-ops" target="_blank">CRTO (ZeroPoint Security)</a></li>
-                                        <li><span class="tag paid">PAID</span> <a href="https://sectok.io/" target="_blank">Sector7 Training Courses</a></li>
-                                        <li><span class="tag free">WEB</span> <a href="https://ired.team/" target="_blank">iRed.team Wiki</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Sliver C2</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Havoc C2</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Mythic</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Covenant</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Donut</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">ScareCrow</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Sysmon (Evasion Testing)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Ligolo-ng</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Starkiller (Empire)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Caldera</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://ired.team/" target="_blank">iRed.team Wiki</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/Tylous/RedTeam_Tips" target="_blank">Red Team Tips</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/path/outline/redteaming" target="_blank">THM: Red Teaming (Free)</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Framework</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://institute.sektor7.net/" target="_blank">Sektor7: Free Blogs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://redsiege.com/" target="_blank">Red Siege Webcasts</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.blackhillsinfosec.com/webcasts/" target="_blank">BHIS Webcasts</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/c/JohnHammond010" target="_blank">YouTube: John Hammond</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://outflank.nl/blog/" target="_blank">Outflank Blogs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://redcanary.com/threat-detection-report/" target="_blank">Red Canary Threat Reports</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <!-- PHASE 07 -->
-                    <article class="phase-card" id="phase-7">
+                    <!-- PHASE 08 -->
+                    <article class="phase-card" id="phase-8">
                         <div class="phase-header">
                             <div class="phase-icon"><i class="fa-solid fa-crosshairs"></i></div>
                             <div class="phase-title">
-                                <h3>PHASE 07: REAL WORLD PRACTICE</h3>
+                                <h3>PHASE 08: REAL WORLD PRACTICE</h3>
                                 <span class="duration">LABS, CTFS & BUG BOUNTIES</span>
                             </div>
                             <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
@@ -316,23 +506,45 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> TRAINING</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag free">LAB</span> <a href="https://www.offsec.com/labs/proving-grounds/" target="_blank">OffSec Proving Grounds</a></li>
-                                        <li><span class="tag free">WEB</span> <a href="https://hackerone.com/" target="_blank">HackerOne Programs</a></li>
-                                        <li><span class="tag free">WEB</span> <a href="https://pentesterlab.com/" target="_blank">PentesterLab Exams</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">OpenVPN / WireGuard</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Kali Linux / Parrot OS</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Docker</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Proxmox / ESXi</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Obsidian (Notes)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Notion (Notes)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">CherryTree</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Git / GitHub</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Python (Custom Scripts)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Bash (Automation)</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://hackerone.com/directory/programs" target="_blank">HackerOne Programs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://bugcrowd.com/programs" target="_blank">Bugcrowd Programs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.hackthebox.com/" target="_blank">HTB: Starting Point</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://tryhackme.com/" target="_blank">THM: Practice CTFs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.vulnhub.com/" target="_blank">VulnHub VMs</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.offsec.com/labs/proving-grounds/" target="_blank">OffSec Proving Grounds (Play)</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://ctftime.org/" target="_blank">CTFtime.org</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.intigriti.com/" target="_blank">Intigriti Bug Bounty</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://yeswehack.com/" target="_blank">YesWeHack</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://overthewire.org/wargames/" target="_blank">OverTheWire Wargames</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <!-- PHASE 08 -->
-                    <article class="phase-card" id="phase-8">
+                    <!-- PHASE 09 -->
+                    <article class="phase-card" id="phase-9">
                         <div class="phase-header">
                             <div class="phase-icon"><i class="fa-solid fa-user-tie"></i></div>
                             <div class="phase-title">
-                                <h3>PHASE 08: PROFESSIONAL OPERATOR</h3>
+                                <h3>PHASE 09: PROFESSIONAL OPERATOR</h3>
                                 <span class="duration">REPORTING, CLIENTS & CAREER</span>
                             </div>
                             <div class="expand-icon"><i class="fa-solid fa-plus"></i></div>
@@ -350,10 +562,33 @@
                                     </ul>
                                 </div>
                                 <div class="content-block">
-                                    <h4><i class="fa-solid fa-graduation-cap"></i> RESOURCES</h4>
+                                    <h4><i class="fa-solid fa-screwdriver-wrench"></i> RECOMMENDED TOOLS</h4>
                                     <ul class="resource-list">
-                                        <li><span class="tag free">WEB</span> <a href="https://github.com/juliocesarfort/public-pentesting-reports" target="_blank">Public Pentest Reports</a></li>
-                                        <li><span class="tag free">WEB</span> <a href="https://www.crest-approved.org/" target="_blank">CREST Guidelines</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">KeepassXC / Bitwarden</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">PwnDoc</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Ghostwriter</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Sysdig / Tetragon</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Markdown Editors</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">LaTeX (Reporting)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Clearscreen / Shred</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Gnu Privacy Guard (GPG)</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">VeraCrypt</a></li>
+                                        <li><span class="tag lab">TOOL</span> <a href="#" target="_blank">Grep/Awk/Sed</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-block">
+                                    <h4><i class="fa-solid fa-graduation-cap"></i> FREE TRAINING</h4>
+                                    <ul class="resource-list">
+                                        <li><span class="tag free">FREE</span> <a href="https://github.com/juliocesarfort/public-pentesting-reports" target="_blank">Public Pentesting Reports</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.crest-approved.org/" target="_blank">CREST Guidelines</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="http://www.pentest-standard.org/index.php/Main_Page" target="_blank">PTES Standard</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://csrc.nist.gov/publications/detail/sp/800-115/final" target="_blank">NIST SP 800-115</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://owasp.org/www-community/OWASP_Risk_Rating_Methodology" target="_blank">OWASP Risk Rating</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.first.org/cvss/calculator/3.1" target="_blank">CVSS Calculator</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/user/DEFCONCommunications" target="_blank">YouTube: DEF CON</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.youtube.com/user/BlackHatOfficialYT" target="_blank">YouTube: Black Hat</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://www.sans.org/reading-room/" target="_blank">SANS Reading Room</a></li>
+                                        <li><span class="tag free">FREE</span> <a href="https://tisiphone.net/" target="_blank">Tisiphone.net (Infosec Career)</a></li>
                                     </ul>
                                 </div>
                             </div>
