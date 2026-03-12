@@ -1,4 +1,4 @@
-# 🛡️ CyberMap.ug | The Zero to Hero Cybersecurity Roadmap
+# 🛡️ CyberMap | The Zero to Hero Hacker Roadmap Roadmap
 
 A professional, high-performance, and visually stunning cybersecurity career roadmap specifically tailored for the defenders of tomorrow, with a focus on **Uganda's tech ecosystem**.
 
@@ -49,3 +49,4 @@ Built by [batyaboyo](https://github.com/batyaboyo).
 
 ---
 *Built for the Defenders of Tomorrow. | &copy; 2026 CYBERMAP.UG*
+
